@@ -55,12 +55,17 @@ export function render(root, { params }) {
         </dl>
       </div>` : ''}
 
+      ${(w.valuations?.length || 0) > 1 ? `<div class="history"><h3 class="label">Valuation history</h3>
+        <ul class="plain-list">${[...w.valuations].reverse().map((v, i, arr) => {
+          const prev = arr[i + 1];
+          return `<li><span>${esc(fmtDate(v.date, { year: 'numeric', month: 'short', day: 'numeric' }))}</span><span><strong>${money(v.value, cur)}</strong>${prev ? ` <span class="muted small">${pct(prev.value ? (v.value - prev.value) / prev.value : null)}</span>` : ''}</span></li>`;
+        }).join('')}</ul></div>` : ''}
       <dl class="spec-list">${rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
       ${w.notes ? `<div class="notes"><h3 class="label">Notes</h3><p>${esc(w.notes).replace(/\n/g, '<br>')}</p></div>` : ''}
       <div class="row-gap">
-        <a class="btn" href="#/edit/${encodeURIComponent(w.id)}">Edit</a>
+        ${w.sample ? '' : `<a class="btn" href="#/edit/${encodeURIComponent(w.id)}">Edit</a>`}
         ${ref ? `<a class="btn btn-ghost" href="#/ref/${encodeURIComponent(ref.ref)}">Reference details</a>` : ''}
-        <button class="btn btn-ghost btn-danger" id="del">Delete</button>
+        ${w.sample ? '' : '<button class="btn btn-ghost btn-danger" id="del">Delete</button>'}
       </div>
     </div>
   </div>
@@ -79,10 +84,12 @@ ${siblings.length ? `<section class="wrap section">
     main.innerHTML = i === 'render' ? dialSlot(w, 'big') : `<img src="${esc(photos[+i])}" alt="${esc(title(w))}">`;
     hydrate(main);
   }));
-  $('#del', root).addEventListener('click', async () => {
+  $('#del', root)?.addEventListener('click', async () => {
     if (!confirm(`Delete ${title(w)}${w.ref ? ` (${w.ref})` : ''} from the collection?`)) return;
-    await deleteWatch(w.id);
-    toast('Watch removed');
-    location.hash = '#/';
+    try {
+      await deleteWatch(w.id);
+      toast('Watch removed');
+      location.hash = '#/';
+    } catch (err) { toast(`Couldn’t delete: ${err.message}`); }
   });
 }

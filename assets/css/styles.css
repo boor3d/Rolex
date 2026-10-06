@@ -419,6 +419,22 @@ textarea { resize: vertical; min-height: 96px; }
 .plain-list li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
 .plain-list a { text-decoration: none; }
 
+/* ---------- account ---------- */
+.account-link { display: inline-flex; align-items: center; justify-content: center; height: 34px; min-width: 34px; padding: 0 14px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; text-decoration: none; color: #fff; background: var(--green); }
+.account-link.is-user { padding: 0; width: 34px; background: var(--gold-soft); color: #1d1606; font-size: 14px; }
+.auth-wrap { display: grid; place-items: center; min-height: 62vh; }
+.auth-card { width: 100%; max-width: 420px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 32px 28px; box-shadow: var(--shadow-lift); }
+.auth-card .display-sm { font-size: 34px; margin: 6px 0 6px; }
+.auth-tabs { margin: 18px 0 18px; }
+.auth-form { display: flex; flex-direction: column; gap: 14px; }
+.auth-form .link { align-self: center; }
+.auth-msg { margin: 0; font-size: 14px; color: var(--ink-2); min-height: 1em; }
+.span-all { grid-column: 1 / -1; }
+.danger-zone { border-color: color-mix(in srgb, var(--bad) 30%, var(--line)); }
+.history { margin: 0 0 22px; }
+.history .plain-list li { padding: 8px 0; }
+
 /* ---------- footer / overlays ---------- */
 .site-footer { margin-top: 72px; border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 13px; }
 .footer-inner p { margin: 0 0 8px; }

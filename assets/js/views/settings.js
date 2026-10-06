@@ -1,20 +1,22 @@
 import { CURRENCIES } from '../vocab.js';
-import { esc, toast, download, $, fmtDate } from '../util.js';
-import { state, profile, saveProfile, exportData, importData, resetToPublished, hasSamples, deleteReference } from '../store.js';
+import { esc, toast, download, $ } from '../util.js';
+import { state, user, profile, saveProfile, exportData, importData, deleteReference, deleteAllData, legacyLocal, clearLegacy, signOut } from '../store.js';
 import { field, text, select, readForm } from './fields.js';
 
 export function render(root) {
-  const p = profile();
+  const p = profile(), u = user();
   const custom = state.data.customReferences;
   const photoCount = state.data.watches.reduce((n, w) => n + (w.photos?.length || 0), 0);
 
   root.innerHTML = `
 <section class="page-head"><div class="wrap">
   <p class="eyebrow">Settings</p>
-  <h1 class="display">Profile &amp; publishing</h1>
+  <h1 class="display">Profile &amp; data</h1>
 </div></section>
 
 <section class="wrap section settings">
+  <div id="legacy" class="panel span-all" hidden></div>
+
   <div class="panel">
     <div class="panel-head"><h2 class="display-sm">Collection profile</h2></div>
     <form id="pf" class="fields">
@@ -27,35 +29,25 @@ export function render(root) {
   </div>
 
   <div class="panel">
-    <div class="panel-head"><h2 class="display-sm">Publish to GitHub Pages</h2></div>
-    <p class="status-line">${state.local
-      ? `<span class="status off">Unpublished changes</span> Edits in this browser were last saved ${esc(fmtDate(state.data.updatedAt, { dateStyle: 'medium', timeStyle: 'short' }))}.`
-      : '<span class="status on">In sync</span> You’re viewing the published <code>data/collection.json</code>.'}</p>
-    <ol class="steps">
-      <li>Download <code>collection.json</code> below.</li>
-      <li>Replace <code>data/collection.json</code> in the repository with it (GitHub web editor → <em>Upload files</em>, or commit locally).</li>
-      <li>GitHub Pages redeploys within a minute or two. Everyone now sees the update.</li>
-    </ol>
-    <div class="export-opts">
-      <label class="check"><input type="checkbox" id="x-fin" checked> Include prices &amp; values</label>
-      <label class="check"><input type="checkbox" id="x-photos" checked> Include photos <span class="muted small">(${photoCount})</span></label>
-      <label class="check"><input type="checkbox" id="x-notes" checked> Include notes</label>
-    </div>
-    <p class="hint">GitHub Pages sites are public. Anything in the published file can be read by anyone with the link, so untick prices if you’d rather keep them private. Unticking only affects the download; your browser copy keeps everything.</p>
-    <div class="row-gap">
-      <button class="btn" id="export">Download collection.json</button>
-      <button class="btn btn-ghost" id="backup">Download full backup</button>
-    </div>
+    <div class="panel-head"><h2 class="display-sm">Account</h2></div>
+    <p>Signed in as <strong>${esc(u?.email || '')}</strong>.</p>
+    <p class="hint">Your watches, prices and photos are stored in your account and visible only to you.</p>
+    <div class="row-gap"><a class="btn btn-ghost" href="#/account">Password</a><button class="btn btn-ghost" id="signout">Sign out</button></div>
   </div>
 
   <div class="panel">
-    <div class="panel-head"><h2 class="display-sm">Import &amp; reset</h2></div>
-    <div class="row-gap">
-      <label class="btn btn-ghost">Import a JSON file<input type="file" id="import" accept="application/json,.json" hidden></label>
-      ${hasSamples() ? '<button class="btn btn-ghost" data-action="remove-samples">Remove sample watches</button>' : ''}
-      ${state.local ? '<button class="btn btn-ghost btn-danger" id="reset">Discard local changes</button>' : ''}
+    <div class="panel-head"><h2 class="display-sm">Backup &amp; export</h2></div>
+    <p class="hint">A portable JSON copy of your collection, photos included. Keep one somewhere safe.</p>
+    <div class="export-opts">
+      <label class="check"><input type="checkbox" id="x-fin" checked> Prices &amp; values</label>
+      <label class="check"><input type="checkbox" id="x-photos" checked> Photos <span class="muted small">(${photoCount})</span></label>
+      <label class="check"><input type="checkbox" id="x-notes" checked> Notes</label>
     </div>
-    <p class="hint">Importing replaces the collection in this browser. “Discard local changes” reverts to the published file.</p>
+    <div class="row-gap">
+      <button class="btn" id="export">Download backup</button>
+      <label class="btn btn-ghost">Import a JSON file<input type="file" id="import" accept="application/json,.json" hidden></label>
+    </div>
+    <p class="hint" id="import-status"></p>
   </div>
 
   <div class="panel">
@@ -64,32 +56,70 @@ export function render(root) {
       <span class="row-gap"><a class="link" href="#/ref-edit/${encodeURIComponent(r.ref)}">Edit</a><button class="link danger" data-delref="${esc(r.ref)}">Delete</button></span></li>`).join('')}</ul>` : ''}
     <a class="btn btn-small btn-ghost" href="#/ref-new">+ Add a reference</a>
   </div>
+
+  <div class="panel danger-zone">
+    <div class="panel-head"><h2 class="display-sm">Delete data</h2></div>
+    <p class="hint">Permanently removes every watch, photo, valuation and custom reference in your account. Download a backup first.</p>
+    <button class="btn btn-ghost btn-danger" id="wipe">Delete all my watches</button>
+  </div>
 </section>`;
+
+  const status = $('#import-status', root);
+  const runImport = async (obj, label) => {
+    status.textContent = `Importing ${label}…`;
+    try {
+      const n = await importData(obj, (i, total) => { status.textContent = `Importing ${i} of ${total}…`; });
+      toast(`Imported ${n} watch${n === 1 ? '' : 'es'}`);
+      return true;
+    } catch (err) {
+      status.textContent = `Import failed: ${err.message}`;
+      return false;
+    }
+  };
 
   $('#pf', root).addEventListener('submit', async e => {
     e.preventDefault();
-    await saveProfile(readForm(e.target));
-    toast('Profile saved');
+    try { await saveProfile(readForm(e.target)); toast('Profile saved'); } catch (err) { toast(err.message); }
   });
-  const stamp = new Date().toISOString().slice(0, 10);
-  $('#export', root).addEventListener('click', () => {
-    download('collection.json', exportData({ financials: $('#x-fin', root).checked, photos: $('#x-photos', root).checked, notes: $('#x-notes', root).checked }));
+  $('#signout', root).addEventListener('click', async () => { await signOut(); location.hash = '#/'; });
+  $('#export', root).addEventListener('click', async e => {
+    e.target.disabled = true;
+    e.target.textContent = 'Preparing…';
+    try {
+      const json = await exportData({ financials: $('#x-fin', root).checked, photos: $('#x-photos', root).checked, notes: $('#x-notes', root).checked });
+      download(`collection-backup-${new Date().toISOString().slice(0, 10)}.json`, json);
+    } catch (err) { toast(err.message); }
+    e.target.disabled = false;
+    e.target.textContent = 'Download backup';
   });
-  $('#backup', root).addEventListener('click', () => download(`rolex-collection-backup-${stamp}.json`, exportData()));
   $('#import', root).addEventListener('change', async e => {
     const file = e.target.files[0];
     if (!file) return;
-    try {
-      await importData(JSON.parse(await file.text()));
-      toast('Collection imported');
-    } catch (err) { toast(`Import failed: ${err.message}`); }
-  });
-  $('#reset', root)?.addEventListener('click', async () => {
-    if (!confirm('Discard every change made in this browser and return to the published collection?')) return;
-    await resetToPublished();
-    toast('Reverted to the published collection');
+    try { await runImport(JSON.parse(await file.text()), file.name); } catch (err) { status.textContent = `Import failed: ${err.message}`; }
   });
   root.querySelectorAll('[data-delref]').forEach(b => b.addEventListener('click', async () => {
     if (confirm(`Delete custom reference ${b.dataset.delref}?`)) await deleteReference(b.dataset.delref);
   }));
+  $('#wipe', root).addEventListener('click', async () => {
+    const n = state.data.watches.length;
+    if (!n) { toast('Nothing to delete'); return; }
+    if (prompt(`This deletes all ${n} watches and their photos permanently. Type DELETE to confirm.`) !== 'DELETE') return;
+    try { await deleteAllData(); toast('All watches deleted'); } catch (err) { toast(err.message); }
+  });
+
+  // Offer to bring over anything saved by the earlier browser-only version of the site.
+  legacyLocal().then(legacy => {
+    if (!legacy) return;
+    const box = $('#legacy', root);
+    if (!box) return;
+    const n = legacy.watches.filter(w => !w.sample).length;
+    box.hidden = false;
+    box.innerHTML = `<div class="panel-head"><h2 class="display-sm">Watches saved in this browser</h2></div>
+      <p>We found <strong>${n} watch${n === 1 ? '' : 'es'}</strong> saved here by the earlier version of the site. Import them into your account?</p>
+      <div class="row-gap"><button class="btn" id="legacy-go">Import ${n} watch${n === 1 ? '' : 'es'}</button><button class="btn btn-ghost" id="legacy-skip">Dismiss</button></div>`;
+    $('#legacy-go', box).addEventListener('click', async () => { if (await runImport(legacy, 'browser data')) await clearLegacy(); });
+    $('#legacy-skip', box).addEventListener('click', async () => {
+      if (confirm('Discard the watches saved in this browser? They will be lost.')) { await clearLegacy(); box.hidden = true; }
+    });
+  });
 }

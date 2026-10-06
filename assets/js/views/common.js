@@ -151,8 +151,8 @@ export function legendTimeline() {
 
 export function sampleBanner() {
   if (!hasSamples()) return '';
-  return `<div class="banner wrap"><p><strong>You’re looking at sample pieces.</strong> Add your own watches, then remove the samples when you’re ready.</p>
-  <div class="banner-actions"><a class="btn btn-small" href="#/add">Add a watch</a><button class="btn btn-small btn-ghost" data-action="remove-samples">Remove samples</button></div></div>`;
+  return `<div class="banner wrap"><p><strong>This is a demo collection.</strong> Create a free account to catalogue your own watches, photos and valuations.</p>
+  <div class="banner-actions"><a class="btn btn-small" href="#/account?mode=signup">Create account</a><a class="btn btn-small btn-ghost" href="#/account">Sign in</a></div></div>`;
 }
 
 export function meter(owned, total, label = '') {

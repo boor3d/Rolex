@@ -1,7 +1,7 @@
 import { CONDITIONS, SETS, DIALS, metalName, dialName, braceletName, bezelName } from '../vocab.js';
 import { renderWatch } from '../dial.js';
-import { esc, num, uid, toast, resizeImage, $, $$, debounce } from '../util.js';
-import { watchById, refByKey, allRefs, saveWatch, saveReference, watches, currency, normRef } from '../store.js';
+import { esc, num, toast, resizeImage, $, $$, debounce } from '../util.js';
+import { watchById, refByKey, allRefs, saveWatch, saveReference, currency, normRef } from '../store.js';
 import { famName } from './common.js';
 import { field, text, number, date, select, familyPairs, metalPairs, dialPairs, braceletPairs, bezelPairs, readForm } from './fields.js';
 
@@ -27,8 +27,9 @@ function searchRefs(q) {
 export function render(root, { params, query }) {
   const editing = params[0] ? watchById(decodeURIComponent(params[0])) : null;
   if (params[0] && !editing) { root.innerHTML = `<section class="wrap section empty"><h2 class="display-sm">Watch not found</h2></section>`; return; }
-  const w = editing ? structuredClone(editing) : { id: uid(), photos: [], bezel: 'smooth', metal: 'steel', dial: 'black', bracelet: 'oyster' };
-  let photos = [...(w.photos || [])];
+  const w = editing ? structuredClone(editing) : { id: crypto.randomUUID(), bezel: 'smooth', metal: 'steel', dial: 'black', bracelet: 'oyster' };
+  // Existing photos carry {id, path, url}; new uploads carry {dataUrl} until saved.
+  let photos = [...(w.photoRefs || [])];
 
   // Pre-fill from ?ref= when arriving from the catalog.
   const pre = !editing && query.get('ref') ? refByKey(query.get('ref')) : null;
@@ -134,13 +135,13 @@ export function render(root, { params, query }) {
   }
   function drawPhotos() {
     $('#photo-list', root).innerHTML = photos.map((p, i) => `<figure class="photo-item">
-      <img src="${esc(p)}" alt="">
+      <img src="${esc(p.url || p.dataUrl)}" alt="">
       <figcaption>${i === 0 ? '<span class="badge owned">Cover</span>' : `<button type="button" class="link" data-cover="${i}">Make cover</button>`}
       <button type="button" class="link danger" data-remove="${i}">Remove</button></figcaption></figure>`).join('');
   }
   async function addFiles(files) {
     for (const f of [...files].filter(f => f.type.startsWith('image/'))) {
-      try { photos.push(await resizeImage(f)); } catch (e) { toast(e.message); }
+      try { photos.push({ dataUrl: await resizeImage(f) }); } catch (e) { toast(e.message); }
     }
     drawPhotos();
   }
@@ -190,20 +191,27 @@ export function render(root, { params, query }) {
     if (!o.ref && !o.model) { toast('Add at least a reference or a model name'); return; }
     const { addRef, ...fields } = o;
     for (const k of Object.keys(fields)) if (fields[k] === '' || fields[k] === null) delete fields[k];
-    const out = { ...Object.fromEntries(Object.entries(w).filter(([k]) => !(k in o))), ...fields, photos, id: w.id };
-    delete out.sample;
-    if (!fields.featured) delete out.featured;
-    else watches().forEach(x => { if (x.id !== w.id) delete x.featured; });
-    if (addRef && o.ref && !refByKey(o.ref)) {
-      await saveReference({
-        ref: o.ref, family: o.family || 'oyster-perpetual', model: o.model || o.ref, nick: o.nickname || undefined,
-        from: o.year || null, to: null, size: o.size, metal: o.metal, bezel: o.bezel,
-        dials: [o.dial], bracelets: [o.bracelet], caliber: o.caliber || undefined,
-      });
+    const out = { ...Object.fromEntries(Object.entries(w).filter(([k]) => !(k in o))), ...fields, id: w.id };
+    for (const k of ['photos', 'photoRefs', 'valuations', 'sample']) delete out[k];
+    const btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.textContent = photos.some(p => p.dataUrl) ? 'Uploading photos…' : 'Saving…';
+    try {
+      if (addRef && o.ref && !refByKey(o.ref)) {
+        await saveReference({
+          ref: o.ref, family: o.family || 'oyster-perpetual', model: o.model || o.ref, nick: o.nickname || undefined,
+          from: o.year || null, to: null, size: o.size, metal: o.metal, bezel: o.bezel,
+          dials: [o.dial], bracelets: [o.bracelet], caliber: o.caliber || undefined,
+        }, { reload: false });
+      }
+      await saveWatch(out, photos);
+      toast(editing ? 'Saved' : 'Added to the collection');
+      location.hash = `#/watch/${encodeURIComponent(out.id)}`;
+    } catch (err) {
+      toast(`Couldn’t save: ${err.message}`);
+      btn.disabled = false;
+      btn.textContent = editing ? 'Save changes' : 'Add to collection';
     }
-    await saveWatch(out);
-    toast(editing ? 'Saved' : 'Added to the collection');
-    location.hash = `#/watch/${encodeURIComponent(out.id)}`;
   });
 
   drawPhotos();

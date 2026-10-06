@@ -1,6 +1,6 @@
 import { FAMILIES, FAMILY, METALS, BRACELETS, metalName, dialName, braceletName } from '../vocab.js';
 import { esc, money, $, debounce } from '../util.js';
-import { watches, profile, currency } from '../store.js';
+import { watches, profile, currency, isDemo } from '../store.js';
 import { dialSlot, hydrate, watchCard, totals, fin, title, nick, famName, delta, sampleBanner } from './common.js';
 
 const ui = { q: '', family: '', metal: '', bracelet: '', sort: 'value', view: 'grid' };
@@ -42,8 +42,8 @@ function results(root) {
   const el = $('#results', root);
   $('#result-count', root).textContent = `${ws.length} ${ws.length === 1 ? 'piece' : 'pieces'}`;
   if (!watches().length) {
-    el.innerHTML = `<div class="empty"><h3 class="display-sm">An empty watch box</h3><p>Start with a reference from the catalog — model, metal, bezel and calibre fill in automatically.</p>
-    <div class="row-gap"><a class="btn" href="#/catalog">Browse the catalog</a><a class="btn btn-ghost" href="#/add">Add manually</a></div></div>`;
+    el.innerHTML = `<div class="empty"><h3 class="display-sm">An empty watch box</h3><p>Add your first watch — search a reference and the model, metal, bezel and calibre fill in automatically.</p>
+    <div class="row-gap"><a class="btn" href="#/add">Add a watch</a><a class="btn btn-ghost" href="#/catalog">Browse the catalog</a><a class="btn btn-ghost" href="#/settings">Import a backup</a></div></div>`;
     return;
   }
   el.innerHTML = !ws.length
@@ -65,7 +65,7 @@ ${sampleBanner()}
 <section class="hero">
   <div class="wrap hero-inner">
     <div class="hero-copy">
-      <p class="eyebrow on-dark">${p.owner ? `${esc(p.owner)} · ` : ''}Private collection</p>
+      <p class="eyebrow on-dark">${p.owner ? `${esc(p.owner)} · ` : ''}${isDemo() ? 'Demo collection' : 'Private collection'}</p>
       <h1 class="display">${esc(p.name)}</h1>
       ${p.tagline ? `<p class="lede">${esc(p.tagline)}</p>` : ''}
       <dl class="hero-stats">

@@ -17,20 +17,29 @@ It runs on GitHub Pages with no build step or server.
 
 Each watch is drawn from its specification (case metal, bezel type and colours, dial colour, bracelet), so no copyrighted press photos are needed. You can upload your own photos for any watch.
 
-## Publish on GitHub Pages
+## Architecture
 
-1. Push this repository to GitHub.
-2. In the repository, go to **Settings → Pages**, set **Source** to *Deploy from a branch*, and choose `main` / `/ (root)`.
-3. The site goes live at `https://<user>.github.io/<repo>/` within a minute or two.
+- **Frontend:** static HTML/JS on GitHub Pages (no build step).
+- **Backend:** [Supabase](https://supabase.com), which provides:
+  - **Auth:** email and password, or an emailed sign-in link.
+  - **Postgres:** watches, private financials, valuation history, photos index, custom references.
+  - **Storage:** watch photos in a private bucket, one folder per user, served by signed URLs.
+- **Privacy:** Row Level Security limits every row to its owner. Prices sit in a separate owner-only table (`watch_finance`), so they can never leak into a future public profile.
+- **Signed out:** visitors see a read-only demo collection (`data/collection.json`) and the full catalog.
 
-## How your data works
+## Setup
 
-- **`data/collection.json`** is the published collection that every visitor sees.
-- **Edits you make on the site** (adding watches, photos, custom references) are saved in your browser (IndexedDB). An **Unpublished** marker appears in the header.
-- To publish them, go to **Settings → Download collection.json**, replace `data/collection.json` in the repo with the download, and push. You can leave prices, photos or notes out of the published file.
-- **Download full backup** keeps a complete copy, and **Import** restores it in any browser.
+1. **Database:** in the Supabase dashboard, open **SQL Editor → New query**, paste `supabase/schema.sql`, and run it. It is safe to re-run.
+2. **Auth URLs:** under **Authentication → URL Configuration**:
+   - Set **Site URL** to `https://boor3d.github.io/Rolex/`.
+   - Add `http://localhost:8000/**` to **Redirect URLs** so local testing works.
+3. **Hosting:** GitHub Pages deploys from `main`, folder `/ (root)`.
 
-> GitHub Pages sites are public. Anything in `data/collection.json` can be read by anyone with the link. Don't publish serial numbers, and untick prices on export if you want them private.
+The project URL and publishable key are in `assets/js/supabase.js`. The publishable key is meant to be public. Never put the `service_role` / secret key in this repo.
+
+**Free tier notes:**
+- Supabase's built-in email sender is rate-limited (a few emails per hour). Before inviting many users, add custom SMTP under **Authentication → Emails** (e.g. Resend).
+- Free projects pause after a week with no activity.
 
 ## The catalog
 
@@ -61,12 +70,14 @@ python3 -m http.server 8000
 index.html
 assets/css/styles.css
 assets/js/app.js          router + theme
-assets/js/store.js        published data + browser edits, export and import
+assets/js/store.js        Supabase data layer (load, save, photos, import/export)
+assets/js/supabase.js     Supabase client + project config
+supabase/schema.sql       tables, RLS policies, storage bucket
 assets/js/dial.js         watch-face renderer
 assets/js/vocab.js        families, metals, dials, bezels, bracelets
 assets/js/views/*.js      one module per page
 data/catalog.json         reference catalog
-data/collection.json      your published collection
+data/collection.json      demo collection shown to signed-out visitors
 ```
 
 ---
