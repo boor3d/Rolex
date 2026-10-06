@@ -1,8 +1,8 @@
 import { FAMILY, DIALS, metalName, dialName, braceletName, bezelName } from '../vocab.js';
 import { renderWatch } from '../dial.js';
 import { esc, $, $$, toast } from '../util.js';
-import { refByKey, watches, allRefs, ownedRefSet, normRef, deleteReference } from '../store.js';
-import { hydrate, timeline, legendTimeline, watchCard, famName } from './common.js';
+import { refByKey, watches, allRefs, ownedRefSet, normRef, deleteReference, refPhotos } from '../store.js';
+import { hydrate, timeline, legendTimeline, watchCard, famName, creditLine } from './common.js';
 
 export function render(root, { params }) {
   const r = refByKey(decodeURIComponent(params[0]));
@@ -11,7 +11,9 @@ export function render(root, { params }) {
     <p>You can add it yourself — it will be saved with your collection.</p><a class="btn" href="#/ref-new?ref=${encodeURIComponent(params[0])}">Add reference</a></section>`;
     return;
   }
-  const sel = { dial: r.dials?.[0], bracelet: r.bracelets?.[0] };
+  const photos = refPhotos(r.ref);
+  // view: index of a photo, or 'art' for the generated illustration.
+  const sel = { dial: r.dials?.[0], bracelet: r.bracelets?.[0], view: photos.length ? 0 : 'art' };
   const mine = watches().filter(w => normRef(w.ref) === normRef(r.ref));
   const siblings = allRefs().filter(x => x.family === r.family);
   const fam = FAMILY[r.family];
@@ -23,6 +25,11 @@ export function render(root, { params }) {
   <div class="watch-layout">
     <div class="gallery">
       <div class="gallery-main" id="ref-visual"></div>
+      <p class="credit" id="ref-credit"></p>
+      ${photos.length ? `<div class="thumbs">
+        ${photos.map((p, i) => `<button class="thumb" data-view="${i}" aria-label="Photo ${i + 1}"><img src="${esc(p.src)}" alt=""></button>`).join('')}
+        <button class="thumb thumb-art" data-view="art" aria-label="Illustration">${renderWatch({ ...r, dial: sel.dial, bracelet: sel.bracelet })}</button>
+      </div>` : ''}
       ${(r.dials?.length || 0) > 1 ? `<div class="picker"><span class="label">Dial</span><div class="swatches">${r.dials.map(d => `<button class="swatch-btn" data-pick="${d}" aria-pressed="${d === sel.dial}" data-tip="${esc(dialName(d))}" aria-label="${esc(dialName(d))}"><i style="background:${DIALS[d]?.hex || '#888'}"></i></button>`).join('')}</div></div>` : ''}
       ${(r.bracelets?.length || 0) > 1 ? `<div class="picker"><span class="label">Bracelet</span><div class="seg">${r.bracelets.map(b => `<button data-bracelet="${b}" aria-pressed="${b === sel.bracelet}">${esc(braceletName(b))}</button>`).join('')}</div></div>` : ''}
     </div>
@@ -54,19 +61,30 @@ export function render(root, { params }) {
 </section>`;
 
   const draw = () => {
-    $('#ref-visual', root).innerHTML = `<div class="dial-slot big">${renderWatch({ ...r, dial: sel.dial, bracelet: sel.bracelet })}</div>`;
+    const p = sel.view === 'art' ? null : photos[sel.view];
+    $('#ref-visual', root).innerHTML = p
+      ? `<img src="${esc(p.src)}" alt="${esc(`${r.ref} ${r.model}`)}">`
+      : `<div class="dial-slot big">${renderWatch({ ...r, dial: sel.dial, bracelet: sel.bracelet })}</div>`;
+    $('#ref-credit', root).innerHTML = p ? creditLine(p) : (photos.length ? 'Illustration generated from the reference specification.' : '');
+    $$('[data-view]', root).forEach(t => t.classList.toggle('active', String(sel.view) === t.dataset.view));
     $('#add-btn', root).href = `#/add?ref=${encodeURIComponent(r.ref)}${sel.dial ? `&dial=${sel.dial}` : ''}${sel.bracelet ? `&bracelet=${sel.bracelet}` : ''}`;
   };
   draw();
   hydrate(root);
   $$('[data-pick]', root).forEach(b => b.addEventListener('click', () => {
     sel.dial = b.dataset.pick;
+    sel.view = 'art';
     $$('.swatch-btn', root).forEach(x => x.setAttribute('aria-pressed', x === b));
     draw();
   }));
   $$('[data-bracelet]', root).forEach(b => b.addEventListener('click', () => {
     sel.bracelet = b.dataset.bracelet;
+    sel.view = 'art';
     $$('[data-bracelet]', root).forEach(x => x.setAttribute('aria-pressed', x === b));
+    draw();
+  }));
+  $$('[data-view]', root).forEach(b => b.addEventListener('click', () => {
+    sel.view = b.dataset.view === 'art' ? 'art' : +b.dataset.view;
     draw();
   }));
   $('#del-ref', root)?.addEventListener('click', async () => {

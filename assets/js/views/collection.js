@@ -1,7 +1,7 @@
 import { FAMILIES, FAMILY, METALS, BRACELETS, metalName, dialName, braceletName } from '../vocab.js';
 import { esc, money, $, debounce } from '../util.js';
 import { watches, profile, currency, isDemo } from '../store.js';
-import { dialSlot, hydrate, watchCard, totals, fin, title, nick, famName, delta, sampleBanner } from './common.js';
+import { dialSlot, watchVisual, hydrate, watchCard, totals, fin, title, nick, famName, delta, sampleBanner } from './common.js';
 
 const ui = { q: '', family: '', metal: '', bracelet: '', sort: 'value', view: 'grid' };
 
@@ -81,7 +81,7 @@ ${sampleBanner()}
       </div>
     </div>
     ${featured ? `<a class="hero-watch" href="#/watch/${encodeURIComponent(featured.id)}">
-      ${dialSlot(featured, 'hero-dial')}
+      ${watchVisual(featured, 'hero-dial')}
       <span class="hero-caption"><span class="eyebrow on-dark">Featured</span>${esc(title(featured))}${nick(featured) ? ` “${esc(nick(featured))}”` : ''} · ${esc(featured.ref || '')}</span>
     </a>` : ''}
   </div>

@@ -9,6 +9,7 @@ const EMPTY = { profile: { name: 'My Collection', tagline: '', owner: '', curren
 export const state = {
   catalogMeta: {},
   baseRefs: [],
+  photos: {},
   demo: structuredClone(EMPTY),
   data: structuredClone(EMPTY),
   user: null,
@@ -109,10 +110,12 @@ async function switchUser(user) {
 }
 
 export async function init() {
-  const [cat, demo] = await Promise.all([
+  const [cat, demo, photos] = await Promise.all([
     fetchJSON('data/catalog.json'),
     fetchJSON('data/collection.json').catch(() => EMPTY),
+    fetchJSON('data/photos.json').catch(() => ({ photos: {} })),
   ]);
+  state.photos = Object.fromEntries(Object.entries(photos.photos || {}).map(([k, v]) => [normRef(k), v]));
   state.catalogMeta = { version: cat.version, note: cat.note };
   state.baseRefs = cat.references;
   state.demo = normaliseDemo(demo);
@@ -152,6 +155,9 @@ export function allRefs() {
   return [...state.baseRefs.filter(r => !seen.has(normRef(r.ref))), ...custom];
 }
 export const refByKey = key => refIndex.get(normRef(key));
+/** Freely licensed reference photos (Wikimedia Commons), each with its credit. */
+export const refPhotos = ref => state.photos[normRef(ref)] || [];
+export const allRefPhotos = () => state.photos;
 export const ownedRefSet = () => new Set(state.data.watches.map(w => normRef(w.ref)).filter(Boolean));
 export const hasSamples = () => isDemo();
 

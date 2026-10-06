@@ -1,7 +1,7 @@
 import { FAMILY, SETS, metalName, dialName, braceletName, bezelName } from '../vocab.js';
 import { esc, money, pct, fmtDate, signedMoney, toast, $, $$ } from '../util.js';
-import { watchById, refByKey, currency, deleteWatch, allRefs, ownedRefSet } from '../store.js';
-import { dialSlot, hydrate, fin, title, nick, famName, timeline, legendTimeline } from './common.js';
+import { watchById, refByKey, currency, deleteWatch, allRefs, ownedRefSet, refPhotos } from '../store.js';
+import { dialSlot, hydrate, fin, title, nick, famName, timeline, legendTimeline, creditLine } from './common.js';
 
 export function render(root, { params }) {
   const w = watchById(decodeURIComponent(params[0]));
@@ -10,7 +10,10 @@ export function render(root, { params }) {
     return;
   }
   const cur = currency(), f = fin(w), ref = refByKey(w.ref), n = nick(w);
-  const photos = w.photos || [];
+  const own = w.photos || [];
+  const stock = own.length ? [] : refPhotos(w.ref);
+  const photos = own.length ? own : stock.map(p => p.src);
+  const caption = i => (stock[i] ? `Reference photo of the ${esc(w.ref)}, not this specific watch. ${creditLine(stock[i])}` : '');
   const rows = [
     ['Reference', w.ref ? `<a href="#/ref/${encodeURIComponent(w.ref)}">${esc(w.ref)}</a>` : '—'],
     ['Family', esc(famName(w.family))],
@@ -33,6 +36,7 @@ export function render(root, { params }) {
   <div class="watch-layout">
     <div class="gallery">
       <div class="gallery-main" id="gallery-main">${photos[0] ? `<img src="${esc(photos[0])}" alt="${esc(title(w))}">` : dialSlot(w, 'big')}</div>
+      <p class="credit" id="gallery-credit">${caption(0)}</p>
       ${photos.length ? `<div class="thumbs">
         ${photos.map((p, i) => `<button class="thumb${i === 0 ? ' active' : ''}" data-photo="${i}" aria-label="Photo ${i + 1}"><img src="${esc(p)}" alt=""></button>`).join('')}
         <button class="thumb" data-photo="render" aria-label="Rendered portrait">${dialSlot(w)}</button>
@@ -82,6 +86,7 @@ ${siblings.length ? `<section class="wrap section">
     $$('.thumb', root).forEach(t => t.classList.toggle('active', t === b));
     const i = b.dataset.photo;
     main.innerHTML = i === 'render' ? dialSlot(w, 'big') : `<img src="${esc(photos[+i])}" alt="${esc(title(w))}">`;
+    $('#gallery-credit', root).innerHTML = i === 'render' ? '' : caption(+i);
     hydrate(main);
   }));
   $('#del', root)?.addEventListener('click', async () => {

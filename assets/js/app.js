@@ -10,6 +10,7 @@ import * as insights from './views/insights.js';
 import * as editor from './views/editor.js';
 import * as settings from './views/settings.js';
 import * as account from './views/account.js';
+import * as credits from './views/credits.js';
 
 const ROUTES = [
   [/^\/?$/, collection, 'collection'],
@@ -23,6 +24,7 @@ const ROUTES = [
   [/^\/edit\/(.+)$/, editor, 'collection', true],
   [/^\/settings$/, settings, 'settings', true],
   [/^\/account$/, account, 'account'],
+  [/^\/credits$/, credits, ''],
 ];
 
 const app = $('#app');

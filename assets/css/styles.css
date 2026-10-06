@@ -208,7 +208,7 @@ textarea { resize: vertical; min-height: 96px; }
 .delta-abs { font-weight: 500; color: var(--muted); margin-left: 2px; }
 .badge { position: absolute; top: 10px; left: 10px; font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; }
 .badge.inline { position: static; vertical-align: 2px; }
-.badge.sample { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--muted); }
+.badge.sample { background: rgba(255, 255, 255, .88); color: #5b605c; backdrop-filter: blur(4px); }
 .badge.owned { background: var(--gold-soft); color: #1d1606; }
 .badge.custom { left: auto; right: 10px; background: color-mix(in srgb, var(--green) 14%, transparent); color: var(--green-ink); }
 .dial-slot { aspect-ratio: 200 / 250; width: 100%; }
@@ -434,6 +434,22 @@ textarea { resize: vertical; min-height: 96px; }
 .danger-zone { border-color: color-mix(in srgb, var(--bad) 30%, var(--line)); }
 .history { margin: 0 0 22px; }
 .history .plain-list li { padding: 8px 0; }
+
+/* ---------- photos & credits ---------- */
+.card-visual .photo-slot.is-ref { aspect-ratio: 4 / 5; background: var(--studio-2); }
+.card-visual .photo-slot img { width: 100%; height: 100%; object-fit: cover; }
+.hero-watch .photo-slot { width: min(100%, 360px); aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 60px rgba(0, 0, 0, .45); border: 1px solid rgba(201, 169, 97, .35); }
+.hero-watch .photo-slot img { width: 100%; height: 100%; object-fit: cover; }
+.credit { font-size: 12px; color: var(--muted); margin: 8px 2px 0; min-height: 1em; }
+.credit a { color: inherit; }
+.thumb-art { padding: 4px; }
+.thumb-art svg { width: 100%; height: 100%; }
+.credits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.credits li { display: grid; grid-template-columns: 84px 1fr; gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px; }
+.credits img { width: 84px; height: 84px; object-fit: cover; border-radius: 10px; }
+.credits p { margin: 2px 0; }
+.credits a { color: inherit; }
+.site-footer a { color: inherit; }
 
 /* ---------- footer / overlays ---------- */
 .site-footer { margin-top: 72px; border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 13px; }

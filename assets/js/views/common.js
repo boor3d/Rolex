@@ -1,7 +1,7 @@
 import { renderWatch } from '../dial.js';
 import { FAMILY, FAMILIES, DIALS, metalName, metalSwatch, dialName, braceletName } from '../vocab.js';
 import { esc, money, pct, num, yearsSince, cagr, $$ } from '../util.js';
-import { currency, refByKey, hasSamples, normRef } from '../store.js';
+import { currency, refByKey, hasSamples, normRef, refPhotos } from '../store.js';
 
 /* ---------- lazily rendered watch portraits ---------- */
 const pending = new Map();
@@ -44,11 +44,21 @@ function fillInBackground() {
   };
   setTimeout(() => idle(step), 250);
 }
+/* ---------- photos ---------- */
+export const creditText = p => `Photo: ${p.author} · ${p.license} · Wikimedia Commons`;
+export function creditLine(p) {
+  const lic = p.licenseUrl ? `<a href="${esc(p.licenseUrl)}" target="_blank" rel="noopener">${esc(p.license)}</a>` : esc(p.license);
+  return `Photo: <a href="${esc(p.source)}" target="_blank" rel="noopener">${esc(p.author)}</a>, ${lic}, via Wikimedia Commons`;
+}
+function photoSlot(src, alt, cls, credit = '') {
+  return `<div class="photo-slot ${cls}"${credit ? ` data-tip="${esc(credit)}"` : ''}><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></div>`;
+}
+/** Owner's photo → licensed reference photo → generated illustration. */
 export function watchVisual(w, cls = '') {
-  const photo = w.photos?.[0];
-  return photo
-    ? `<div class="photo-slot ${cls}"><img src="${esc(photo)}" alt="${esc(title(w))}" loading="lazy"></div>`
-    : dialSlot(w, cls);
+  if (w.photos?.[0]) return photoSlot(w.photos[0], title(w), cls);
+  const rp = w.ref && refPhotos(w.ref)[0];
+  if (rp) return photoSlot(rp.src, `${title(w)} (reference photo)`, `${cls} is-ref`, creditText(rp));
+  return dialSlot(w, cls);
 }
 
 /* ---------- naming ---------- */
@@ -104,8 +114,9 @@ export function watchCard(w) {
 }
 
 export function refCard(r, owned) {
+  const rp = refPhotos(r.ref)[0];
   return `<a class="card ref-card${owned ? ' is-owned' : ''}" href="#/ref/${encodeURIComponent(r.ref)}">
-  <div class="card-visual">${dialSlot(r)}${owned ? '<span class="badge owned">In collection</span>' : ''}${r.custom ? '<span class="badge custom">Custom</span>' : ''}</div>
+  <div class="card-visual">${rp ? photoSlot(rp.src, `${r.ref} ${r.model}`, 'is-ref', creditText(rp)) : dialSlot(r)}${owned ? '<span class="badge owned">In collection</span>' : ''}${r.custom ? '<span class="badge custom">Custom</span>' : ''}</div>
   <div class="card-body">
     <p class="ref-num">${esc(r.ref)}</p>
     <h3 class="card-title">${esc(r.model)}${r.nick ? ` <em>“${esc(r.nick)}”</em>` : ''}</h3>
