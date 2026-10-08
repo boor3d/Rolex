@@ -16,7 +16,7 @@ function signedIn(root, u) {
     <div class="panel-head"><h2 class="display-sm">Signed in</h2></div>
     <p>${esc(u.email)}</p>
     <p class="muted small">${watches().length} watch${watches().length === 1 ? '' : 'es'} in your collection.</p>
-    <div class="row-gap"><a class="btn" href="#/">Go to my collection</a><a class="btn btn-ghost" href="#/settings">Settings</a><button class="btn btn-ghost" id="out">Sign out</button></div>
+    <div class="row-gap"><a class="btn" href="#/">Go to my collection</a><a class="btn btn-ghost" href="#/settings">Settings</a><a class="btn btn-ghost" href="#/status">System check</a><button class="btn btn-ghost" id="out">Sign out</button></div>
   </div>
   <div class="panel">
     <div class="panel-head"><h2 class="display-sm">Password</h2><p class="muted">Set one if you signed in with an email link.</p></div>

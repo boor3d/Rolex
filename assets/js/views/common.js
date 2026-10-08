@@ -45,10 +45,10 @@ function fillInBackground() {
   setTimeout(() => idle(step), 250);
 }
 /* ---------- photos ---------- */
-export const creditText = p => `Photo: ${p.author} · ${p.license} · Wikimedia Commons`;
+export const creditText = p => `Photo: ${p.author} · ${p.license} · ${p.via || 'Wikimedia Commons'}`;
 export function creditLine(p) {
   const lic = p.licenseUrl ? `<a href="${esc(p.licenseUrl)}" target="_blank" rel="noopener">${esc(p.license)}</a>` : esc(p.license);
-  return `Photo: <a href="${esc(p.source)}" target="_blank" rel="noopener">${esc(p.author)}</a>, ${lic}, via Wikimedia Commons`;
+  return `Photo: <a href="${esc(p.source)}" target="_blank" rel="noopener">${esc(p.author)}</a>, ${lic}, via ${esc(p.via || 'Wikimedia Commons')}`;
 }
 function photoSlot(src, alt, cls, credit = '') {
   return `<div class="photo-slot ${cls}"${credit ? ` data-tip="${esc(credit)}"` : ''}><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy"></div>`;

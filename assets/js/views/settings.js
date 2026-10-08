@@ -32,7 +32,7 @@ export function render(root) {
     <div class="panel-head"><h2 class="display-sm">Account</h2></div>
     <p>Signed in as <strong>${esc(u?.email || '')}</strong>.</p>
     <p class="hint">Your watches, prices and photos are stored in your account and visible only to you.</p>
-    <div class="row-gap"><a class="btn btn-ghost" href="#/account">Password</a><button class="btn btn-ghost" id="signout">Sign out</button></div>
+    <div class="row-gap"><a class="btn btn-ghost" href="#/account">Password</a><a class="btn btn-ghost" href="#/status">System check</a><button class="btn btn-ghost" id="signout">Sign out</button></div>
   </div>
 
   <div class="panel">

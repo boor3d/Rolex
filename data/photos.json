@@ -1,5 +1,5 @@
 {
- "note": "Freely licensed photographs from Wikimedia Commons. Each image keeps its original licence; see source pages for full terms.",
+ "note": "Freely licensed photographs from Wikimedia Commons and Flickr (found via Openverse). Each image keeps its original licence; see source pages for full terms.",
  "photos": {
   "1016": [
    {
@@ -8,7 +8,8 @@
     "author": "Clyde94",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Uno_dei_modelli_pi%C3%B9_longevi_di_casa_Rolex-_si_tratta_dell%27Explorer_ref._1016.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Uno_dei_modelli_pi%C3%B9_longevi_di_casa_Rolex-_si_tratta_dell%27Explorer_ref._1016.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "1019": [
@@ -18,7 +19,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Milgauss_ref._1019_risalente_a_fine_anni_Ottanta.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Milgauss_ref._1019_risalente_a_fine_anni_Ottanta.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "114270": [
@@ -28,7 +30,8 @@
     "author": "Max3351",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_Explorer_Ref._114270_Cal._3130.png"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_Explorer_Ref._114270_Cal._3130.png",
+    "via": "Wikimedia Commons"
    }
   ],
   "116000": [
@@ -38,7 +41,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_ref._116000_con_quadrante_Explorer.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_ref._116000_con_quadrante_Explorer.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "116334": [
@@ -48,7 +52,8 @@
     "author": "hypo.physe",
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_II_116334_-_1.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_II_116334_-_1.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/116334-2.jpg",
@@ -56,7 +61,8 @@
     "author": "hypo.physe",
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_II_116334_-_2.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_II_116334_-_2.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "116400GV": [
@@ -66,7 +72,8 @@
     "author": "Carolyn Maria Adams",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Milgauss_116400GV.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Milgauss_116400GV.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "116660": [
@@ -76,7 +83,8 @@
     "author": "Rruegger (English Wikipedia)",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_deepsea.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_deepsea.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/116660-2.jpg",
@@ -84,7 +92,8 @@
     "author": "Pittigrilli",
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Deepsea_Sea-Dweller_116660_Blue_Dial_%27James_Cameron%27_(without_background,_upright).jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Deepsea_Sea-Dweller_116660_Blue_Dial_%27James_Cameron%27_(without_background,_upright).jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/116660-3.jpg",
@@ -92,7 +101,8 @@
     "author": "amh1988",
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Deepsea_Sea-Dweller_116660_Blue_Dial_%27James_Cameron%27.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Deepsea_Sea-Dweller_116660_Blue_Dial_%27James_Cameron%27.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16600": [
@@ -102,7 +112,8 @@
     "author": "John Torcasio",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Sea_Dweller_16600.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Sea_Dweller_16600.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/16600-2.jpg",
@@ -110,7 +121,8 @@
     "author": "John Torcasio",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Sea_Dweller_16600.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Sea_Dweller_16600.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/16600-3.jpg",
@@ -118,7 +130,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Sea-Dweller_ref._16600_di_fine_anni_Ottanta,_privo_della_lente_magnificatrice..jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Sea-Dweller_ref._16600_di_fine_anni_Ottanta,_privo_della_lente_magnificatrice..jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "116680": [
@@ -128,7 +141,8 @@
     "author": "Carolyn Maria Adams",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Yachtmaster_II_116680.JPG"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Yachtmaster_II_116680.JPG",
+    "via": "Wikimedia Commons"
    }
   ],
   "116688": [
@@ -138,7 +152,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Yacht-Master_II_ref._116688_risalente_al_2007.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Yacht-Master_II_ref._116688_risalente_al_2007.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "116710BLNR": [
@@ -148,7 +163,8 @@
     "author": "gabihil",
     "license": "Public domain",
     "licenseUrl": null,
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II_116710BLNR_Batman.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II_116710BLNR_Batman.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "116713LN": [
@@ -158,7 +174,8 @@
     "author": "Michael de Silva (bsodmike.com)",
     "license": "CC BY 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMTIIC.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMTIIC.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "124200": [
@@ -168,7 +185,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_34_ref._124200_con_bracciale_Oyster_e_lunetta_liscia.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_34_ref._124200_con_bracciale_Oyster_e_lunetta_liscia.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "126000": [
@@ -178,7 +196,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Quadrante_Med_Blue_del_Rolex_Oyster_Perpetual_ref._126000.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Quadrante_Med_Blue_del_Rolex_Oyster_Perpetual_ref._126000.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "126200": [
@@ -188,7 +207,8 @@
     "author": "Remi Mathis",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_36_126200-0006.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_36_126200-0006.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "126234": [
@@ -198,7 +218,8 @@
     "author": "ajay_suresh",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_126234.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_126234.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "126713GRNR": [
@@ -208,7 +229,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_II_ref._126713GRNR.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_II_ref._126713GRNR.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "126900": [
@@ -218,7 +240,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Air-King_ref._126900,_risalente_al_2022.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Air-King_ref._126900,_risalente_al_2022.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "14000": [
@@ -228,7 +251,8 @@
     "author": "Thierry Mostra-store",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:148-rolex-airking-precision-14000-circa-1994-mostra-store-aix-watch-montre-rolex.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:148-rolex-airking-precision-14000-circa-1994-mostra-store-aix-watch-montre-rolex.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "14270": [
@@ -238,7 +262,8 @@
     "author": "Thierry Mostra-store",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:152-rolex-explorer-ref-14270-circa-2001-mostra-store-aix-montres-vintage.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:152-rolex-explorer-ref-14270-circa-2001-mostra-store-aix-montres-vintage.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16013": [
@@ -248,7 +273,8 @@
     "author": "anna2005",
     "license": "CC0",
     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_16013.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_16013.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/16013-2.jpg",
@@ -256,7 +282,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_ref._16013,_seconda_met%C3%A0_anni_%2770-primi_%2780.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_ref._16013,_seconda_met%C3%A0_anni_%2770-primi_%2780.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "1603": [
@@ -266,7 +293,8 @@
     "author": "hypo.physe",
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_1603.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_1603.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16030": [
@@ -276,7 +304,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_ref._16030,_fine_anni_Settanta.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Datejust_ref._16030,_fine_anni_Settanta.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16523": [
@@ -286,7 +315,8 @@
     "author": "Clyde94",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Daytona_ref._16523,_fine_anni_%2790.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Daytona_ref._16523,_fine_anni_%2790.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16528": [
@@ -296,7 +326,8 @@
     "author": "Alesili",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Daytona_16528.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Daytona_16528.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "1655": [
@@ -306,7 +337,8 @@
     "author": "Clyde94",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Explorer_II_del_1972,_ref._1655,_ribattezzato_%22Freccione%22.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Explorer_II_del_1972,_ref._1655,_ribattezzato_%22Freccione%22.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16550": [
@@ -316,7 +348,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Explorer_II_ref._16550_Pannone,_met%C3%A0_anni_Ottanta.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Explorer_II_ref._16550_Pannone,_met%C3%A0_anni_Ottanta.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16570": [
@@ -326,7 +359,8 @@
     "author": "Pittigrilli",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Explorer_II_(edited).jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Explorer_II_(edited).jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/16570-2.jpg",
@@ -334,7 +368,8 @@
     "author": "TheMonster17",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Explorer_2.JPG"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Explorer_2.JPG",
+    "via": "Wikimedia Commons"
    }
   ],
   "16610": [
@@ -344,7 +379,8 @@
     "author": "FrankWilliams",
     "license": "Public domain",
     "licenseUrl": null,
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex-Submariner.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex-Submariner.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16613": [
@@ -354,7 +390,8 @@
     "author": "Eternalsleeper at English Wikipedia",
     "license": "Public domain",
     "licenseUrl": null,
-    "source": "https://commons.wikimedia.org/wiki/File:Mysub16613x.JPG"
+    "source": "https://commons.wikimedia.org/wiki/File:Mysub16613x.JPG",
+    "via": "Wikimedia Commons"
    }
   ],
   "16618": [
@@ -364,7 +401,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Submariner_ref._16618_Sultan_Dial.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Submariner_ref._16618_Sultan_Dial.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16700": [
@@ -374,7 +412,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_ref._16700.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_ref._16700.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "16710": [
@@ -384,7 +423,8 @@
     "author": "Juho Eskelä",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/16710-2.jpg",
@@ -392,7 +432,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_II_ref._16710_Coke.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_II_ref._16710_Coke.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/16710-3.jpg",
@@ -400,7 +441,8 @@
     "author": "Peter WILSON",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II_-_16710_in_it_sitting_on_top_of_the_box.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II_-_16710_in_it_sitting_on_top_of_the_box.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/16710-4.jpg",
@@ -408,7 +450,8 @@
     "author": "Pittigrilli",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II_-_16710_(without_background).jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II_-_16710_(without_background).jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/16710-5.jpg",
@@ -416,7 +459,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II_ref._16710T.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT_Master_II_ref._16710T.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "1675": [
@@ -426,7 +470,8 @@
     "author": "Thierry Mostra-store",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:30-Rolex-GMT-Master-Pepsi-mostra-store-aix-1675.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:30-Rolex-GMT-Master-Pepsi-mostra-store-aix-1675.jpg",
+    "via": "Wikimedia Commons"
    },
    {
     "src": "assets/img/refs/1675-2.jpg",
@@ -434,7 +479,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_ref._1675_%22Pink_Panther%22.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_ref._1675_%22Pink_Panther%22.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "1803": [
@@ -444,7 +490,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Day_Date_ref._1803,_fine_anni_%2770-primi_anni_%2780.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Day_Date_ref._1803,_fine_anni_%2770-primi_anni_%2780.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "277200": [
@@ -454,7 +501,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_ref._277200_con_quadrante_color_lavanda.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_ref._277200_con_quadrante_color_lavanda.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "50535": [
@@ -464,7 +512,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Cellini_Moonphase_ref._50535.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Cellini_Moonphase_ref._50535.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "6204": [
@@ -474,7 +523,8 @@
     "author": "Clyde94",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Il_primo_Rolex_Submariner_del_1953.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Il_primo_Rolex_Submariner_del_1953.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "6241": [
@@ -484,7 +534,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Roelx_Daytona_ref._6241_%22John_Player_Special%22.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Roelx_Daytona_ref._6241_%22John_Player_Special%22.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "6263": [
@@ -494,7 +545,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Daytona_ref._6263,_primi_anni_Settanta.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Daytona_ref._6263,_primi_anni_Settanta.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "6265": [
@@ -504,7 +556,8 @@
     "author": "Clyde94",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Daytona_%22Big_Red%22,_ref._6265.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Daytona_%22Big_Red%22,_ref._6265.jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "6538": [
@@ -514,7 +567,8 @@
     "author": "EMore98",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Submariner_ref._6538_detto_%22Coroncione%22_per_via_della_corona_di_carica_di_dimensioni_maggiorate,_risalente_alla_fine_degli_anni_Cinquanta..jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Rolex_Submariner_ref._6538_detto_%22Coroncione%22_per_via_della_corona_di_carica_di_dimensioni_maggiorate,_risalente_alla_fine_degli_anni_Cinquanta..jpg",
+    "via": "Wikimedia Commons"
    }
   ],
   "6541": [
@@ -524,7 +578,196 @@
     "author": "Clyde94",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Primo_Rolex_Milgauss,_ref._6541,_risalente_al_1956.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Primo_Rolex_Milgauss,_ref._6541,_risalente_al_1956.jpg",
+    "via": "Wikimedia Commons"
+   }
+  ],
+  "116500LN": [
+   {
+    "src": "assets/img/refs/116500ln-1.jpg",
+    "title": "Rolex Daytona 116500LN",
+    "author": "section215",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/25646902@N00/33842265413",
+    "via": "Flickr"
+   },
+   {
+    "src": "assets/img/refs/116500ln-2.jpg",
+    "title": "Rolex Daytona 116500LN",
+    "author": "section215",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/25646902@N00/33842265803",
+    "via": "Flickr"
+   },
+   {
+    "src": "assets/img/refs/116500ln-3.jpg",
+    "title": "Rolex Daytona 116500LN",
+    "author": "section215",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/25646902@N00/34521235891",
+    "via": "Flickr"
+   }
+  ],
+  "116600": [
+   {
+    "src": "assets/img/refs/116600-1.jpg",
+    "title": "Rolex Sea-Dweller 116600",
+    "author": "section215",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/25646902@N00/16419675545",
+    "via": "Flickr"
+   }
+  ],
+  "116655": [
+   {
+    "src": "assets/img/refs/116655-1.jpg",
+    "title": "Rolex Yacht Master 116655 Everose Gold Ceramic Watch",
+    "author": "WatchReviewBlog",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/145839163@N06/30227963981",
+    "via": "Flickr"
+   }
+  ],
+  "124270": [
+   {
+    "src": "assets/img/refs/124270-1.jpg",
+    "title": "Rolex explorer on wrist exploring",
+    "author": "Mario A. P.",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/99058495@N00/52426457406",
+    "via": "Flickr"
+   },
+   {
+    "src": "assets/img/refs/124270-2.jpg",
+    "title": "the time of the explorer",
+    "author": "Mario A. P.",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/99058495@N00/52426457461",
+    "via": "Flickr"
+   },
+   {
+    "src": "assets/img/refs/124270-3.jpg",
+    "title": "The Rolex Explorer 124270",
+    "author": "Mario A. P.",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/99058495@N00/52276085753",
+    "via": "Flickr"
+   }
+  ],
+  "14060M": [
+   {
+    "src": "assets/img/refs/14060m-1.jpg",
+    "title": "Rolex Submariner ref. 14060M, metà anni 2000",
+    "author": "Clyde94",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=125463135",
+    "via": "Wikimedia"
+   }
+  ],
+  "1665": [
+   {
+    "src": "assets/img/refs/1665-1.jpg",
+    "title": "Rolex Sea-Dweller 1665",
+    "author": "hypo.physe",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/39516732@N08/4280474206",
+    "via": "Flickr"
+   }
+  ],
+  "16753": [
+   {
+    "src": "assets/img/refs/16753-1.jpg",
+    "title": "Rolex GMT-Master 16753",
+    "author": "hypo.physe",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/39516732@N08/4764988166",
+    "via": "Flickr"
+   }
+  ],
+  "1680": [
+   {
+    "src": "assets/img/refs/1680-1.jpg",
+    "title": "Rolex Submariner 1680 Red / FAP",
+    "author": "hypo.physe",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/39516732@N08/4279725285",
+    "via": "Flickr"
+   },
+   {
+    "src": "assets/img/refs/1680-2.jpg",
+    "title": "Rolex Submariner 1680 Red Mark 1",
+    "author": "section215",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/25646902@N00/15646852533",
+    "via": "Flickr"
+   }
+  ],
+  "18038": [
+   {
+    "src": "assets/img/refs/18038-1.jpg",
+    "title": "Rolex Day-Date 18038",
+    "author": "hypo.physe",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/39516732@N08/3974806399",
+    "via": "Flickr"
+   }
+  ],
+  "5512": [
+   {
+    "src": "assets/img/refs/5512-1.jpg",
+    "title": "Rolex Submariner 5512",
+    "author": "hypo.physe",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/39516732@N08/3909708617",
+    "via": "Flickr"
+   }
+  ],
+  "5513": [
+   {
+    "src": "assets/img/refs/5513-1.jpg",
+    "title": "Rolex Submariner 5513",
+    "author": "hypo.physe",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/39516732@N08/4280478376",
+    "via": "Flickr"
+   }
+  ],
+  "6202": [
+   {
+    "src": "assets/img/refs/6202-1.jpg",
+    "title": "1950s Rolex Turn-o-graph - 6202",
+    "author": "char1iej",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/28433985@N06/3007629103",
+    "via": "Flickr"
+   }
+  ],
+  "6239": [
+   {
+    "src": "assets/img/refs/6239-1.jpg",
+    "title": "Rolex 'Paul Newman' Daytona - 6239",
+    "author": "char1iej",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/28433985@N06/3007629173",
+    "via": "Flickr"
    }
   ]
  }

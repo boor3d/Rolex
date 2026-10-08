@@ -1,5 +1,5 @@
 import { init, onChange, profile, user, isDemo } from './store.js';
-import { initTooltips, $, $$ } from './util.js';
+import { initTooltips, toast, $, $$ } from './util.js';
 import { resetSlots } from './views/common.js';
 import * as collection from './views/collection.js';
 import * as watch from './views/watch.js';
@@ -11,6 +11,7 @@ import * as editor from './views/editor.js';
 import * as settings from './views/settings.js';
 import * as account from './views/account.js';
 import * as credits from './views/credits.js';
+import * as status from './views/status.js';
 
 const ROUTES = [
   [/^\/?$/, collection, 'collection'],
@@ -25,6 +26,7 @@ const ROUTES = [
   [/^\/settings$/, settings, 'settings', true],
   [/^\/account$/, account, 'account'],
   [/^\/credits$/, credits, ''],
+  [/^\/status$/, status, ''],
 ];
 
 const app = $('#app');
@@ -80,9 +82,24 @@ function theme() {
   label();
 }
 
+// Supabase reports failed email links in the URL (e.g. expired, or opened in another browser).
+function authErrorFromUrl() {
+  const params = new URLSearchParams((location.hash.startsWith('#error') ? location.hash.slice(1) : '') || location.search.slice(1));
+  const msg = params.get('error_description');
+  if (!msg) return;
+  history.replaceState(null, '', location.pathname + '#/account');
+  const friendly = /expired|invalid/i.test(msg)
+    ? 'That sign-in link has expired or was already used. Request a new one below.'
+    : /code verifier|flow state/i.test(msg)
+      ? 'Open the email link in the same browser you signed up in, or request a new link here.'
+      : msg.replace(/\+/g, ' ');
+  setTimeout(() => toast(friendly), 400);
+}
+
 (async function start() {
   theme();
   initTooltips();
+  authErrorFromUrl();
   try {
     await init();
   } catch (err) {

@@ -451,6 +451,18 @@ textarea { resize: vertical; min-height: 96px; }
 .credits a { color: inherit; }
 .site-footer a { color: inherit; }
 
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; max-width: 820px; }
+.checks li { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.checks li.pending { display: block; color: var(--muted); }
+.checks p { margin: 0 0 2px; }
+.check-name { font-weight: 600; }
+.check-icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-weight: 700; font-size: 14px; }
+.checks .ok .check-icon { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+.checks .fail { border-color: color-mix(in srgb, var(--bad) 45%, var(--line)); }
+.checks .fail .check-icon { background: color-mix(in srgb, var(--bad) 16%, transparent); color: var(--bad); }
+.checks .summary { border-color: color-mix(in srgb, var(--good) 45%, var(--line)); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
 /* ---------- footer / overlays ---------- */
 .site-footer { margin-top: 72px; border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 13px; }
 .footer-inner p { margin: 0 0 8px; }

@@ -63,7 +63,11 @@ export function specFrom(src = {}) {
 
 function lin(id, t, x2 = 1, y2 = 1) {
   return `<linearGradient id="${id}" x1="0" y1="0" x2="${x2}" y2="${y2}">
-<stop offset="0" stop-color="${t[0]}"/><stop offset=".38" stop-color="${t[1]}"/><stop offset=".62" stop-color="${t[2]}"/><stop offset="1" stop-color="${t[1]}"/></linearGradient>`;
+<stop offset="0" stop-color="${t[1]}"/><stop offset=".16" stop-color="${t[0]}"/><stop offset=".3" stop-color="${t[1]}"/><stop offset=".48" stop-color="${t[2]}"/><stop offset=".6" stop-color="${t[1]}"/><stop offset=".78" stop-color="${t[0]}"/><stop offset="1" stop-color="${t[2]}"/></linearGradient>`;
+}
+// Brushed finish: a soft sweep without the mirror bands.
+function brushed(id, t) {
+  return `<linearGradient id="${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${t[2]}"/><stop offset=".3" stop-color="${t[1]}"/><stop offset=".55" stop-color="${t[0]}"/><stop offset=".8" stop-color="${t[1]}"/><stop offset="1" stop-color="${t[2]}"/></linearGradient>`;
 }
 
 function ticksPath(count, r1, r2, skip = () => false) {
@@ -90,7 +94,7 @@ function triangle(rOut, rIn, half, fill, stroke = 'none') {
 
 /* ---------- bracelet ---------- */
 function bracelet(s, id) {
-  const base = `url(#${id}b)`, acc = `url(#${id}a)`;
+  const base = `url(#${id}bb)`, acc = `url(#${id}a)`;
   const gap = 'rgba(0,0,0,.38)';
   const zones = [[0, 54], [196, 250]];
   const rowsIn = (step, off = 0) => {
@@ -140,7 +144,11 @@ function bracelet(s, id) {
       if (s.bracelet === 'rivet') body += rowsIn(13).map(y => `<circle cx="74.5" cy="${n(y + 6.5)}" r=".9" fill="${gap}"/><circle cx="125.5" cy="${n(y + 6.5)}" r=".9" fill="${gap}"/>`).join('');
     }
   }
-  return `<g clip-path="url(#${id}br)">${body}<rect x="72" y="0" width="56" height="250" fill="url(#${id}sh)"/></g>`;
+  const metal = !['oysterflex', 'leather'].includes(s.bracelet);
+  const step = { jubilee: 10, president: 8, pearlmaster: 6, 'flat-jubilee': 7 }[s.bracelet] || 13;
+  const shade = metal ? `<pattern id="${id}lk" width="56" height="${step}" patternUnits="userSpaceOnUse" x="72"><rect width="56" height="${step}" fill="url(#${id}lkg)"/></pattern>
+<rect x="72" y="0" width="56" height="250" fill="url(#${id}lk)"/><rect x="72" y="0" width="56" height="250" fill="url(#${id}brush)" opacity=".5"/>` : '';
+  return `<g clip-path="url(#${id}br)">${body}${shade}<rect x="72" y="0" width="56" height="250" fill="url(#${id}sh)"/></g>`;
 }
 
 /* ---------- bezel ---------- */
@@ -152,7 +160,9 @@ function bezel(s, id, accTone) {
   const ink = warm ? accTone[0] : '#ecebe7';
   const darkInk = '#2a2b2e';
   const ring = (fill, extra = '') => `<circle cx="${CX}" cy="${CY}" r="58" fill="none" stroke="${fill}" stroke-width="12" ${extra}/>`;
-  const edges = `<circle cx="${CX}" cy="${CY}" r="64" fill="none" stroke="rgba(0,0,0,.28)" stroke-width=".6"/><circle cx="${CX}" cy="${CY}" r="52.2" fill="none" stroke="rgba(0,0,0,.35)" stroke-width=".7"/>`;
+  const edges = `<circle cx="${CX}" cy="${CY}" r="58" fill="none" stroke="url(#${id}gloss)" stroke-width="12"/>
+<circle cx="${CX}" cy="${CY}" r="63.6" fill="none" stroke="url(#${id}rim)" stroke-width="1"/>
+<circle cx="${CX}" cy="${CY}" r="64" fill="none" stroke="rgba(0,0,0,.3)" stroke-width=".6"/><circle cx="${CX}" cy="${CY}" r="52.2" fill="none" stroke="rgba(0,0,0,.45)" stroke-width=".9"/>`;
   let out = '';
   switch (type) {
     case 'fluted': {
@@ -228,6 +238,9 @@ function dialFace(s, id, dial, print) {
       if (i % 2) a += `M${x1} ${y1}L${x2} ${y2}`; else b += `M${x1} ${y1}L${x2} ${y2}`;
     }
     out += `<path d="${a}" stroke="#fff" stroke-opacity=".07" stroke-width="1.1"/><path d="${b}" stroke="#000" stroke-opacity=".07" stroke-width="1.1"/>`;
+    // Light catching the brushed rays: two opposite bright sectors.
+    const sector = (a1, a2) => { const [x1, y1] = pt(52, a1), [x2, y2] = pt(52, a2); return `M${CX} ${CY}L${x1} ${y1}A52 52 0 0 1 ${x2} ${y2}Z`; };
+    out += `<path d="${sector(292, 338)}${sector(112, 158)}" fill="url(#${id}sheen)"/>`;
   }
   const r = rng(s.dial + s.family);
   if (dial.pattern === 'meteorite') {
@@ -249,6 +262,7 @@ function dialFace(s, id, dial, print) {
     }
     out += `<g clip-path="url(#${id}c)"><path d="${d}" fill="none" stroke="#c9963f" stroke-opacity=".55" stroke-width="2.2"/><path d="${e}" fill="none" stroke="#2b1a10" stroke-opacity=".6" stroke-width="2.6"/></g>`;
   }
+  out += `<circle cx="${CX}" cy="${CY}" r="52" fill="url(#${id}rh)"/>`;
   if (dial.track) out += `<circle cx="${CX}" cy="${CY}" r="49.6" fill="none" stroke="${dial.track}" stroke-width="3.4"/>`;
   const tickInk = dial.track ? '#ecebe6' : print;
   out += `<path d="${ticksPath(60, 51, 49.2, i => i % 5 === 0)}" stroke="${tickInk}" stroke-opacity=".75" stroke-width=".42"/>`;
@@ -400,8 +414,16 @@ function crownAndCase(s, id) {
   out += r(side, `<rect x="${CX - 3.5}" y="${CY - 71}" width="7" height="6" fill="${base}"/><rect x="${CX - 7.5}" y="${CY - 77}" width="15" height="8" rx="1.6" fill="${acc}" stroke="rgba(0,0,0,.3)" stroke-width=".4"/>
 <path d="M${CX - 5} ${CY - 76.4}v6.8M${CX - 2.5} ${CY - 76.4}v6.8M${CX} ${CY - 76.4}v6.8M${CX + 2.5} ${CY - 76.4}v6.8M${CX + 5} ${CY - 76.4}v6.8" stroke="rgba(0,0,0,.25)" stroke-width=".5"/>`);
   if (s.pushers) for (const a of [side - 30, side + 30]) out += r(a, `<rect x="${CX - 2.4}" y="${CY - 71}" width="4.8" height="5" fill="${base}"/><rect x="${CX - 4.6}" y="${CY - 76}" width="9.2" height="6" rx="1.4" fill="${acc}" stroke="rgba(0,0,0,.3)" stroke-width=".4"/>`);
-  out += `<path d="M70 50Q70 47 73 47H127Q130 47 130 50L132 82H68ZM68 168H132L130 200Q130 203 127 203H73Q70 203 70 200Z" fill="${base}" stroke="rgba(0,0,0,.25)" stroke-width=".5"/><path d="M72 52.5H128M72 197.5H128" stroke="rgba(0,0,0,.3)" stroke-width=".8"/>
-<circle cx="${CX}" cy="${CY}" r="67" fill="${base}" stroke="rgba(0,0,0,.25)" stroke-width=".6"/>`;
+  // Oyster lugs: horns that flare from the case and taper into the bracelet, brushed on top with polished bevels.
+  const top = `M65 92C65 74 69 56 72 45L128 45C131 56 135 74 135 92Z`;
+  const bottom = `M65 158C65 176 69 194 72 205L128 205C131 194 135 176 135 158Z`;
+  out += `<path d="${top}${bottom}" fill="url(#${id}bb)" stroke="rgba(0,0,0,.3)" stroke-width=".5"/>
+<path d="${top}${bottom}" fill="url(#${id}brush)" opacity=".35"/>
+<path d="M65.6 90C65.6 74 69.4 56.5 72.4 46M134.4 90C134.4 74 130.6 56.5 127.6 46M65.6 160C65.6 176 69.4 193.5 72.4 204M134.4 160C134.4 176 130.6 193.5 127.6 204" fill="none" stroke="url(#${id}b)" stroke-width="2.2"/>
+<path d="M66.8 90C66.8 74 70.4 57 73.2 47M133.2 90C133.2 74 129.6 57 126.8 47M66.8 160C66.8 176 70.4 193 73.2 203M133.2 160C133.2 176 129.6 193 126.8 203" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width=".5"/>
+<path d="M72.6 49H127.4M72.6 201H127.4" stroke="rgba(0,0,0,.35)" stroke-width=".9"/>
+<circle cx="${CX}" cy="${CY}" r="67" fill="${base}" stroke="rgba(0,0,0,.3)" stroke-width=".7"/>
+<circle cx="${CX}" cy="${CY}" r="65.6" fill="none" stroke="url(#${id}rim)" stroke-width="1.6"/>`;
   return out;
 }
 
@@ -421,7 +443,15 @@ export function renderWatch(src, { title = '' } = {}) {
   const label = title || s.label;
   return `<svg class="watch-svg" viewBox="0 0 200 250" role="img" aria-label="${label.replace(/"/g, '')}" font-family="Inter, system-ui, sans-serif">
 <defs>
-${lin(id + 'b', baseTone)}${lin(id + 'a', accTone)}${lin(id + 'i', idxTone, 0.4, 1)}${dialGrad}
+${lin(id + 'b', baseTone)}${lin(id + 'a', accTone)}${lin(id + 'i', idxTone, 0.4, 1)}${brushed(id + 'bb', baseTone)}${dialGrad}
+<linearGradient id="${id}lkg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".22" stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></linearGradient>
+<pattern id="${id}brush" width="1.4" height="250" patternUnits="userSpaceOnUse"><rect width=".5" height="250" fill="#fff" opacity=".18"/></pattern>
+<linearGradient id="${id}gloss" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset=".32" stop-color="#fff" stop-opacity=".04"/><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient>
+<linearGradient id="${id}rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".45" stop-color="#fff" stop-opacity=".1"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></linearGradient>
+<radialGradient id="${id}sheen" cx=".5" cy=".5" r=".5"><stop offset=".1" stop-color="#fff" stop-opacity="0"/><stop offset=".55" stop-color="#fff" stop-opacity="${dark ? .1 : .16}"/><stop offset="1" stop-color="#fff" stop-opacity="${dark ? .04 : .08}"/></radialGradient>
+<radialGradient id="${id}rh" cx=".5" cy=".5" r=".5"><stop offset=".86" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient>
+<filter id="${id}ds" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx=".45" dy=".9" stdDeviation=".55" flood-color="#000" flood-opacity=".5"/></filter>
+<linearGradient id="${id}glint" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 <linearGradient id="${id}sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset=".18" stop-color="#000" stop-opacity="0"/><stop offset=".82" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></linearGradient>
 <linearGradient id="${id}lt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 <linearGradient id="${id}hl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".15"/></linearGradient>
@@ -430,14 +460,15 @@ ${lin(id + 'b', baseTone)}${lin(id + 'a', accTone)}${lin(id + 'i', idxTone, 0.4,
 <radialGradient id="${id}cy" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".04"/></radialGradient>
 <radialGradient id="${id}gl" cx=".3" cy=".2" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity=".04"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
 <clipPath id="${id}c"><circle cx="${CX}" cy="${CY}" r="52"/></clipPath>
-<clipPath id="${id}br"><path d="M75 0H125L128 54H72ZM72 196H128L125 250H75Z"/></clipPath>
+<clipPath id="${id}br"><path d="M76 0H124L127.5 52H72.5ZM72.5 198H127.5L124 250H76Z"/></clipPath>
 </defs>
 ${bracelet(s, id)}
 ${crownAndCase(s, id)}
 ${bezel(s, id, accTone)}
 ${dialFace(s, id, dial, print)}
-${indices(s, id, dial, print)}
-${hands(s, id)}
+<g filter="url(#${id}ds)">${indices(s, id, dial, print)}</g>
+<g filter="url(#${id}ds)">${hands(s, id)}</g>
 <g clip-path="url(#${id}c)"><circle cx="${CX}" cy="${CY}" r="52" fill="url(#${id}gl)"/></g>
+<path d="${arc(50.6, 292, 338)}" fill="none" stroke="url(#${id}glint)" stroke-width="1.3" stroke-linecap="round"/>
 </svg>`;
 }
